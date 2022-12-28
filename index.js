@@ -46,13 +46,13 @@ app.post('/api/shorturl', function(req, res) {
           res.json({ original_url: oriUrl, short_url: shortUrl });
         }
       } else {
-        // url is invalid
-        res.json({ error: 'invalid url' });
+        // hostname is unreachable
+        res.json({ error: 'Invalid Hostname' });
       }
     });
   } else {
     // url is invalid because not contain http/https protocol
-    res.json({ error: 'invalid url' });
+    res.json({ error: 'Invalid URL' });
   }
 });
 
