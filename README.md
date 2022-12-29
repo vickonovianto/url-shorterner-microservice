@@ -6,7 +6,7 @@ This is the boilerplate code for the [URL Shortener Microservice project at free
 1. First copy file `sample.env` and rename it into `.env`, and fill the `PORT=` with intended port where the api  will listen to, for example `PORT=8080`.
 2. Open terminal, and navigate to the directory where this code is located, and run `npm install`.
 3. After finished installing dependencies, run `npm start`.
-4. To test the api, you can use browser or [Postman](https://www.postman.com/downloads/).
+4. To test the api, you can use browser or [Postman](https://www.postman.com/downloads/). Access the form to make a `POST` request at the root url, for example `http://localhost:8080/`, and then input the url to be shortened at the input, and then press `POST URL`.
 5. To stop the api, type `Ctrl+C` in the terminal.
 
 ## API Description
