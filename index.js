@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 });
 
 // an integer that will become shortened url that will keep incrementing and will be returned with post response
-let shortUrl = 0; 
+let shortUrl = 0;
 
 // map that pairs original url to short url
 const mapOriToShortUrl = new Map();
@@ -27,13 +27,13 @@ const mapOriToShortUrl = new Map();
 const mapShortToOriUrl = new Map();
 
 // URL Shortener Post API endpoint
-app.post('/api/shorturl', function(req, res) {
-  const oriUrl = req.body.url // get the original url from request body
-  if (oriUrl.startsWith("https://") || oriUrl.startsWith("http://")) {
-    // the http:// or https:// part of the original url must be removed so it can be processed by dns lookup  
-    const urlWithoutProtocol = oriUrl.replace(/^(http|https):\/\//i, "");
-     // check the validity of the url, url must be without http or https
-    dns.lookup(urlWithoutProtocol, (err, address, family) => {
+app.post('/api/shorturl/', function(req, res) {
+  const oriUrl = new URL(req.body.url); // get the original url from request body
+  if (oriUrl.protocol === 'https:' || oriUrl.protocol === 'http:') {
+    // dns lookup can only process url hostname without protocol  
+    const urlHostname = oriUrl.hostname;
+    // check the validity of the hostname
+    dns.lookup(urlHostname, (err, address, family) => {
       if (err === null) {
         if (mapOriToShortUrl.has(oriUrl)) {
           // long url has been shortened before, get value from mapOriToShortUrl
